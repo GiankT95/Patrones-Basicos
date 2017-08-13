@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class ManejadorCliente {
 
-    private String ruta = "C:\\Users\\publico10\\Desktop\\11.txt";
+    private String ruta = "C:\\Users\\Asus\\Documents\\clientes.txt";
 
     public List<Cliente> listarClientes() {
         List<Cliente> listarClientes = new ArrayList();
@@ -29,7 +29,7 @@ public class ManejadorCliente {
 
             while ((linea = br.readLine()) != null) {
                 String[] campos = linea.split(";");
-                listarClientes.add(new Cliente(campos[1].trim(), campos[2].trim(), Integer.valueOf(campos[0]), Integer.valueOf(campos[3])));
+                listarClientes.add(new Cliente(campos[2].trim(), campos[0].trim(), Integer.valueOf(campos[1]), Integer.valueOf(campos[3]), Integer.valueOf(campos[4])));
             }
 
             ManejadorArchivos.cerrarArchivo();

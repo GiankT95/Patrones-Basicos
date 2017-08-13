@@ -9,13 +9,15 @@ public class Cliente {
     private String nombres;
     private String apellidos;
     private int cedula;
-    private int saldoCuentaAhorros;
+    private Cuenta CuentaAhorros;
+    private Cuenta CuentaCorriente;
 
-    public Cliente(String nombres, String apellidos, int cedula, int saldoCuentaAhorros) {
+    public Cliente(String nombres, String apellidos, int cedula, int montoAH, int montoCTE) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.cedula = cedula;
-        this.saldoCuentaAhorros = saldoCuentaAhorros;
+        this.CuentaAhorros = new CuentaAhorros(montoAH);
+        this.CuentaCorriente = new CuentaCorriente(montoCTE);
     }
 
     /**
@@ -24,12 +26,12 @@ public class Cliente {
      */
     
     public void retirarDineroCA(int monto) {
-        saldoCuentaAhorros = saldoCuentaAhorros - monto;
+        CuentaAhorros.setBalance(CuentaAhorros.getBalance() - monto);
     }
 
     public String toString() {
-        return nombres + " " + apellidos;
-        //return String.format("%030d;%30s;%30s;%030d", cedula, nombres, apellidos, saldoCuentaAhorros);
+        //return nombres + " " + apellidos;
+        return String.format("C.C %10d|%10s %10s| Ahorros %10d| Corriente %10d|", cedula, nombres, apellidos, CuentaAhorros.getBalance(), CuentaCorriente.getBalance());
     }
 
     public String getNombres() {
@@ -44,10 +46,6 @@ public class Cliente {
         return cedula;
     }
 
-    public int getSaldoCuentaAhorros() {
-        return saldoCuentaAhorros;
-    }
-
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
@@ -58,9 +56,5 @@ public class Cliente {
 
     public void setCedula(int cedula) {
         this.cedula = cedula;
-    }
-
-    public void setSaldoCuentaAhorros(int saldoCuentaAhorros) {
-        this.saldoCuentaAhorros = saldoCuentaAhorros;
     }
 }
