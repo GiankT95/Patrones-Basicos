@@ -1,5 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package actividad_patrones_basicos;
@@ -14,14 +15,14 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author jrudasc
+ * @author Asus
  */
-public class ManejadorCliente {
+public class ManejadorTransacciones {
+    
+        private String ruta = "C:\\Users\\Asus\\Documents\\transacciones.txt";
 
-    private String ruta = "C:\\Users\\Asus\\Documents\\clientes.txt";
-
-    public List<Cliente> listarClientes() {
-        List<Cliente> listarClientes = new ArrayList();
+    public List<Transaccion> listarTransacciones() {
+        List<Transaccion> listarTransacciones = new ArrayList();
 
         try {
             BufferedReader br = ManejadorArchivos.abrirArchivoLectura(ruta);
@@ -29,18 +30,18 @@ public class ManejadorCliente {
 
             while ((linea = br.readLine()) != null) {
                 String[] campos = linea.split(";");
-                listarClientes.add(new Cliente(campos[1].trim(), campos[2].trim(), Integer.valueOf(campos[0])));
+                listarTransacciones.add(new Transaccion(campos[0].trim()));
             }
 
             ManejadorArchivos.cerrarArchivo();
-            return listarClientes;
+            return listarTransacciones;
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Transaccion.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
-    public boolean guardar(Cliente e) {
+    public boolean guardar(Transaccion t) {
         try {
             BufferedReader br = ManejadorArchivos.abrirArchivoLectura(ruta);
             String contenido = "";
@@ -61,17 +62,17 @@ public class ManejadorCliente {
                 pw.println(contenido);
             }
 
-            pw.println(e.toString());
+            pw.println(t.toString());
 
             ManejadorArchivos.cerrarArchivo();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Transaccion.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
-    public boolean eliminar(Cliente e) {
+    public boolean eliminar(Transaccion t) {
         try {
             BufferedReader br = ManejadorArchivos.abrirArchivoLectura(ruta);
             String contenido = "";
@@ -80,7 +81,7 @@ public class ManejadorCliente {
             while ((linea = br.readLine()) != null) {
 
                 String[] campos = linea.split(";");
-                if (!(Integer.parseInt(campos[0]) == e.getCedula())) {
+                if (!(Integer.parseInt(campos[0]) == t.getCuenta().getTitular().getCedula())) {
                     if (!contenido.isEmpty()) {
                         contenido = contenido + "\r\n" + linea;
                     } else {
@@ -97,8 +98,9 @@ public class ManejadorCliente {
             ManejadorArchivos.cerrarArchivo();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Transaccion.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
+    
 }

@@ -5,15 +5,22 @@
  */
 package actividad_patrones_basicos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Asus
  */
-public class Cuenta {
+public abstract class Cuenta {
     
-    int balance;
-    Cliente titular;
+    public int balance;
+    public Cliente titular;
+    public ArrayList<Transaccion> listaTrans = new ArrayList();
 
+    public abstract void hacerDebito(int monto);
+    
+    public abstract void hacerCredito(int monto);
+    
     public int getBalance() {
         return balance;
     }
@@ -29,6 +36,13 @@ public class Cuenta {
     public void setTitular(Cliente titular) {
         this.titular = titular;
     }
-    
+
+    public ArrayList<Transaccion> getListaTrans() {
+        return listaTrans;
+    }
+
+    public void setListaTrans(ArrayList<Transaccion> listaTrans) {
+        this.listaTrans = listaTrans;
+    }
     
 }

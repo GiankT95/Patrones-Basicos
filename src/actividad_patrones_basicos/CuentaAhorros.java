@@ -14,6 +14,20 @@ public class CuentaAhorros extends Cuenta{
     public CuentaAhorros(int balance){
         this.balance = balance;
     }
+
+    @Override
+    public void hacerDebito(int monto) { 
+        Transaccion t = new Transaccion("Debito");
+        
+        this.setBalance(balance - monto);
+    }
+    
+    @Override
+    public void hacerCredito(int monto) {
+        Transaccion t = new Transaccion("Credito");
+        
+        this.setBalance(balance + monto);
+    }
     
     
 }

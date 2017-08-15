@@ -10,13 +10,32 @@ public class Index {
     public static void main(String[] arg) {
 
         ManejadorCliente manejadorCliente = new ManejadorCliente();
+        ManejadorTransacciones manejadorTrans = new ManejadorTransacciones();
         
-        Cliente cliente1 = new Cliente("Jorge", "Rudas", 1320549864, 500450, 656150);
+        Cliente cliente1 = new Cliente("Jorge", "Rudas", 1320549864);
         
-        Cliente cliente2 = new Cliente("Daniela", "Castillo", 1254897542, 780500, 435200);
+        Cliente cliente2 = new Cliente("Daniela", "Castillo", 1254897542);
+        
+        Cuenta cuenta1 = new CuentaAhorros(850000);
+        Cuenta cuenta2 = new CuentaCorriente(500000);
+        
+        Cuenta cuenta3 = new CuentaAhorros(745600);
+        Cuenta cuenta4 = new CuentaCorriente(985800);
+        
+        cliente1.agregarCuenta(cuenta1);
+        cliente1.agregarCuenta(cuenta2);
+        
+        cliente2.agregarCuenta(cuenta3);
+        cliente2.agregarCuenta(cuenta4);
+        
+        cliente1.retirarDinero(50000, cuenta1);
+        cliente2.depositarDinero(15000, cuenta3);
         
         manejadorCliente.guardar(cliente1);
         manejadorCliente.guardar(cliente2);
+                
+        manejadorTrans.guardar(cliente1.getListaCuentas().get(0).getListaTrans().get(0));
+        
         
         //manejadorCliente.eliminar(cliente1);
     }
