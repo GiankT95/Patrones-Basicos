@@ -29,14 +29,20 @@ public class Index {
         cliente2.agregarCuenta(cuenta4);
         
         cliente1.retirarDinero(50000, cuenta1);
-        cliente1.depositarDinero(15000, cuenta2);
+        cliente1.depositarDinero(15000, cuenta1);
+        
         
         manejadorCliente.guardar(cliente1);
         manejadorCliente.guardar(cliente2);
-                
+        
+        for (Transaccion t : cuenta1.getListaTrans()){
+        
+            manejadorTrans.guardar(t);
+        }
+        
         for (Transaccion t : cuenta1.getListaTrans()){
             
-            System.out.println(t.getTipo());
+            System.out.println(t.getTipo() +" "+ t.getFecha() +" "+ cuenta1.getTitular().getNombres());
         }
         
         

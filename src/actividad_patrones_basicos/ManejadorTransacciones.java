@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class ManejadorTransacciones {
     
-        private String ruta = "C:\\Users\\Asus\\Documents\\transacciones.txt";
+        private String ruta = "C:\\Users\\Fuller 101\\Desktop\\transacciones.txt";
 
     public List<Transaccion> listarTransacciones() {
         List<Transaccion> listarTransacciones = new ArrayList();

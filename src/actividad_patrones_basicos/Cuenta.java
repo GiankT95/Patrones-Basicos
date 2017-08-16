@@ -21,6 +21,9 @@ public abstract class Cuenta {
     
     public abstract void hacerCredito(int monto);
     
+    @Override
+    public abstract String toString();
+    
     public int getBalance() {
         return balance;
     }

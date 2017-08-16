@@ -22,6 +22,7 @@ public class Cliente {
 
     public void agregarCuenta(Cuenta c) {
         this.listaCuentas.add(c);
+        c.setTitular(this);
     }
     
     public void eliminarCuenta(Cuenta c){

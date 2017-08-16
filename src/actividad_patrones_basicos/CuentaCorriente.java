@@ -18,18 +18,21 @@ public class CuentaCorriente extends Cuenta{
     @Override
     public void hacerDebito(int monto) { 
         Transaccion t = new Transaccion("Debito");
-     
+        this.listaTrans.add(t);
         this.setBalance(balance - monto);
-        
-        this.getListaTrans().add(t);
+        t.setCuenta(this);
     }
     
     @Override
     public void hacerCredito(int monto) {
         Transaccion t = new Transaccion("Credito");
-        
+        this.listaTrans.add(t);
         this.setBalance(balance + monto);
-        
-        this.getListaTrans().add(t);
+        t.setCuenta(this);
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 }
