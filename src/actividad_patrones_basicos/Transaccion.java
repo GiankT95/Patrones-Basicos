@@ -16,11 +16,13 @@ public class Transaccion {
     
     private String fecha;
     private String tipo;
+    private int monto;
     private Cuenta cuenta;
 
-    public Transaccion(String tipo) {
+    public Transaccion(String tipo, int monto) {
         this.getFecha();
         this.tipo = tipo;
+        this.monto = monto;
     }
     
     public String getFecha() {
@@ -35,7 +37,7 @@ public class Transaccion {
     
     @Override
     public String toString() {
-      return String.format(ManejadorConstantes.FORMATO_TRANSACCION, this.getFecha(), this.getTipo(), this.getCuenta().getBalance(), this.getCuenta().getTitular().getCedula());
+      return String.format(ManejadorConstantes.FORMATO_TRANSACCION, this.getFecha(), this.getTipo(), this.getMonto(), this.getCuenta().getTitular().getCedula(), this.getCuenta().getTipo());
     }
 
     public void setFecha(String fecha) {
@@ -57,6 +59,15 @@ public class Transaccion {
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
+
+    public int getMonto() {
+        return monto;
+    }
+
+    public void setMonto(int monto) {
+        this.monto = monto;
+    }
+    
     
     
 }

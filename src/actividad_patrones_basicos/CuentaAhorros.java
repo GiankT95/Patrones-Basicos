@@ -11,21 +11,25 @@ package actividad_patrones_basicos;
  */
 public class CuentaAhorros extends Cuenta{
     
+    ;
+    
     public CuentaAhorros(int balance){
         this.balance = balance;
+        this.setTipo("AHORROS");
     }
 
     @Override
     public void hacerDebito(int monto) { 
-        Transaccion t = new Transaccion("Debito");
+        Transaccion t = new Transaccion("Debito", monto);
         this.listaTrans.add(t);
         this.setBalance(balance - monto);
         t.setCuenta(this);
+        
     }
     
     @Override
     public void hacerCredito(int monto) {
-        Transaccion t = new Transaccion("Credito");
+        Transaccion t = new Transaccion("Credito", monto);
         this.listaTrans.add(t);
         this.setBalance(balance + monto);
         t.setCuenta(this);
@@ -36,6 +40,5 @@ public class CuentaAhorros extends Cuenta{
         
         return "";
     }
-    
     
 }

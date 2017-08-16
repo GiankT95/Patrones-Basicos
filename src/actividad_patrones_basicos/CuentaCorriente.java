@@ -13,11 +13,12 @@ public class CuentaCorriente extends Cuenta{
     
     public CuentaCorriente(int balance){
         this.balance = balance;
+        this.setTipo("CORRIENTE");
     }
 
     @Override
     public void hacerDebito(int monto) { 
-        Transaccion t = new Transaccion("Debito");
+        Transaccion t = new Transaccion("Debito", monto);
         this.listaTrans.add(t);
         this.setBalance(balance - monto);
         t.setCuenta(this);
@@ -25,7 +26,7 @@ public class CuentaCorriente extends Cuenta{
     
     @Override
     public void hacerCredito(int monto) {
-        Transaccion t = new Transaccion("Credito");
+        Transaccion t = new Transaccion("Credito", monto);
         this.listaTrans.add(t);
         this.setBalance(balance + monto);
         t.setCuenta(this);

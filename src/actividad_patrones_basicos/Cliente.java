@@ -29,6 +29,10 @@ public class Cliente {
         this.listaCuentas.remove(c);
     }
     
+    public void modificarCliente(Cliente c){
+        
+    }
+    
     /**
      * Este metodo permite realizar un debito sobre el saldo de su cuenta
      * @param monto Monto a debitar

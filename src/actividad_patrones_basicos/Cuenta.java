@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public abstract class Cuenta {
     
     public int balance;
+    private String tipo;
     public Cliente titular;
     public ArrayList<Transaccion> listaTrans = new ArrayList();
 
@@ -47,5 +48,14 @@ public abstract class Cuenta {
     public void setListaTrans(ArrayList<Transaccion> listaTrans) {
         this.listaTrans = listaTrans;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     
 }

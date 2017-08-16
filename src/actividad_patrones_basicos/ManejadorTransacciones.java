@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class ManejadorTransacciones {
     
-        private String ruta = "C:\\Users\\Fuller 101\\Desktop\\transacciones.txt";
+        private String ruta = ManejadorConstantes.FORMATO_RUTA_TRANSACCIONES;
 
     public List<Transaccion> listarTransacciones() {
         List<Transaccion> listarTransacciones = new ArrayList();
@@ -29,8 +29,8 @@ public class ManejadorTransacciones {
             String linea;
 
             while ((linea = br.readLine()) != null) {
-                String[] campos = linea.split(";");
-                listarTransacciones.add(new Transaccion(campos[0].trim()));
+                String[] campos = linea.split("|");
+                listarTransacciones.add(new Transaccion(campos[0].trim(), Integer.valueOf(campos[1])));
             }
 
             ManejadorArchivos.cerrarArchivo();
@@ -80,7 +80,7 @@ public class ManejadorTransacciones {
 
             while ((linea = br.readLine()) != null) {
 
-                String[] campos = linea.split(";");
+                String[] campos = linea.split("|");
                 if (!(Integer.parseInt(campos[0]) == t.getCuenta().getTitular().getCedula())) {
                     if (!contenido.isEmpty()) {
                         contenido = contenido + "\r\n" + linea;

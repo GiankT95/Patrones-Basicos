@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class ManejadorCliente {
 
-    private String ruta = "C:\\Users\\Fuller 101\\Desktop\\clientes.txt";
+    private String ruta = ManejadorConstantes.FORMATO_RUTA_CLIENTES;
 
     public List<Cliente> listarClientes() {
         List<Cliente> listarClientes = new ArrayList();
