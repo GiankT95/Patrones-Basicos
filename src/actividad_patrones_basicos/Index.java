@@ -55,12 +55,14 @@ public class Index {
         manejadorCtas.crearArchivo();
         manejadorTrans.crearArchivo();
         
+        if(manejadorCliente.listarClientes().isEmpty() && manejadorCtas.listarCuentas().isEmpty()){
            for (Cliente c : listaClientes){
              manejadorCliente.guardar(c);
                 for(Cuenta e : c.getListaCuentas()){
                     manejadorCtas.guardar(e);
                 }
             }
+        }   
  
         
         /*for (Cliente c : listaClientes){

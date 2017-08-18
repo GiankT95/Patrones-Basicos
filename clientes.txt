@@ -1,0 +1,2 @@
+123456;     Jorge;     Rudas;N° de cuentas 2
+7890458;   Daniela;  Castillo;N° de cuentas 2

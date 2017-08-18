@@ -1,0 +1,4 @@
+   AHORROS;    815000;     Jorge      Rudas
+ CORRIENTE;    555000;     Jorge      Rudas
+   AHORROS;    780600;   Daniela   Castillo
+ CORRIENTE;    745800;   Daniela   Castillo
