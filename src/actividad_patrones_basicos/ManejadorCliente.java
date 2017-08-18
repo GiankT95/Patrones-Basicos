@@ -5,9 +5,12 @@
 package actividad_patrones_basicos;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,7 +83,7 @@ public class ManejadorCliente {
             while ((linea = br.readLine()) != null) {
 
                 String[] campos = linea.split(";");
-                if (!(Integer.parseInt(campos[0]) == e.getCedula())) {
+                if (!(campos[0].equals(e.getCedula()))) {
                     if (!contenido.isEmpty()) {
                         contenido = contenido + "\r\n" + linea;
                     } else {
@@ -100,5 +103,28 @@ public class ManejadorCliente {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public void verificarCliente(Cliente e){
+        List<Cliente> lista = this.listarClientes();
+        boolean b = false;
+        
+        for (Cliente c : lista) {
+            if(e.getCedula() == lista.indexOf(c.getCedula())){
+                b = true;
+            }
+            else{
+                this.guardar(e);
+            }
+        }
+    }
+    
+    public void crearArchivo() throws IOException{
+        
+        File f = new File(ruta);
+        
+        if(!f.exists()){
+            FileWriter fr = new FileWriter(f);
+        }
     }
 }

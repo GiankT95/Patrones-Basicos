@@ -6,6 +6,8 @@
 package actividad_patrones_basicos;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -101,6 +103,15 @@ public class ManejadorTransacciones {
             Logger.getLogger(Transaccion.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public void crearArchivo() throws IOException{
+        
+        File f = new File(ruta);
+        
+        if(!f.exists()){
+            FileWriter fr = new FileWriter(f);
+        }
     }
     
 }

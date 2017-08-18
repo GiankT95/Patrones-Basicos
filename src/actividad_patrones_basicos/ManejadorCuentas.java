@@ -6,6 +6,8 @@
 package actividad_patrones_basicos;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class ManejadorCuentas {
     
      private String ruta = ManejadorConstantes.FORMATO_RUTA_CUENTAS;
 
-    public List<Cuenta> listarClientes() {
+    public List<Cuenta> listarCuentas() {
         List<Cuenta> listarCuentas = new ArrayList();
 
         try {
@@ -104,8 +106,31 @@ public class ManejadorCuentas {
             ManejadorArchivos.cerrarArchivo();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public void verificarCuenta(Cuenta e){
+        List<Cuenta> lista = this.listarCuentas();
+        boolean b = false;
+        
+        for (Cuenta c : lista) {
+            if(e.getTitular().getCedula() == lista.indexOf(c.getTitular().getCedula())){
+                b = true;
+            }
+            else{
+                this.guardar(e);
+            }
+        }
+    }
+    
+    public void crearArchivo() throws IOException{
+        
+        File f = new File(ruta);
+        
+        if(!f.exists()){
+            FileWriter fr = new FileWriter(f);
+        }
     }
 }
