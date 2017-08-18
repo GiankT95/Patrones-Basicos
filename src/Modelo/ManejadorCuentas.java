@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package actividad_patrones_basicos;
+package Modelo;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,31 +19,37 @@ import java.util.logging.Logger;
  *
  * @author Asus
  */
-public class ManejadorTransacciones {
+public class ManejadorCuentas {
     
-        private String ruta = ManejadorConstantes.FORMATO_RUTA_TRANSACCIONES;
+     private String ruta = ManejadorConstantes.FORMATO_RUTA_CUENTAS;
 
-    public List<Transaccion> listarTransacciones() {
-        List<Transaccion> listarTransacciones = new ArrayList();
+    public List<Cuenta> listarCuentas() {
+        List<Cuenta> listarCuentas = new ArrayList();
 
         try {
             BufferedReader br = ManejadorArchivos.abrirArchivoLectura(ruta);
             String linea;
 
             while ((linea = br.readLine()) != null) {
-                String[] campos = linea.split("|");
-                listarTransacciones.add(new Transaccion(campos[0].trim(), Integer.valueOf(campos[1])));
+                String[] campos = linea.split(";");
+                
+                if(campos[0].equals("AHORROS")){
+                    listarCuentas.add(new CuentaAhorros(Integer.valueOf(campos[1])));
+                }
+                else{
+                    listarCuentas.add(new CuentaCorriente(Integer.valueOf(campos[1])));
+                }
             }
 
             ManejadorArchivos.cerrarArchivo();
-            return listarTransacciones;
+            return listarCuentas;
         } catch (IOException ex) {
-            Logger.getLogger(Transaccion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
-    public boolean guardar(Transaccion t) {
+    public boolean guardar(Cuenta e) {
         try {
             BufferedReader br = ManejadorArchivos.abrirArchivoLectura(ruta);
             String contenido = "";
@@ -64,17 +70,17 @@ public class ManejadorTransacciones {
                 pw.println(contenido);
             }
 
-            pw.println(t.toString());
+            pw.println(e.toString());
 
             ManejadorArchivos.cerrarArchivo();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(Transaccion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
-    public boolean eliminar(Transaccion t) {
+    public boolean eliminar(Cuenta e) {
         try {
             BufferedReader br = ManejadorArchivos.abrirArchivoLectura(ruta);
             String contenido = "";
@@ -82,8 +88,8 @@ public class ManejadorTransacciones {
 
             while ((linea = br.readLine()) != null) {
 
-                String[] campos = linea.split("|");
-                if (!(Integer.parseInt(campos[0]) == t.getCuenta().getTitular().getCedula())) {
+                String[] campos = linea.split(";");
+                if (!(Integer.parseInt(campos[0]) == e.getTitular().getCedula())) {
                     if (!contenido.isEmpty()) {
                         contenido = contenido + "\r\n" + linea;
                     } else {
@@ -100,9 +106,23 @@ public class ManejadorTransacciones {
             ManejadorArchivos.cerrarArchivo();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(Transaccion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public void verificarCuenta(Cuenta e){
+        List<Cuenta> lista = this.listarCuentas();
+        boolean b = false;
+        
+        for (Cuenta c : lista) {
+            if(e.getTitular().getCedula() == lista.indexOf(c.getTitular().getCedula())){
+                b = true;
+            }
+            else{
+                this.guardar(e);
+            }
+        }
     }
     
     public void crearArchivo() throws IOException{
@@ -113,5 +133,4 @@ public class ManejadorTransacciones {
             FileWriter fr = new FileWriter(f);
         }
     }
-    
 }

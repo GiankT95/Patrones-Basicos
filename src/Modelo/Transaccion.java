@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package actividad_patrones_basicos;
+package Modelo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,12 +17,14 @@ public class Transaccion {
     private String fecha;
     private String tipo;
     private int monto;
+    private int tiempo;
     private Cuenta cuenta;
 
     public Transaccion(String tipo, int monto) {
         this.getFecha();
         this.tipo = tipo;
         this.monto = monto;
+        this.tiempo = tiempo;
     }
     
     public String getFecha() {
@@ -67,7 +69,13 @@ public class Transaccion {
     public void setMonto(int monto) {
         this.monto = monto;
     }
-    
-    
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
     
 }

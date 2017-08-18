@@ -1,4 +1,4 @@
-package actividad_patrones_basicos;
+package Modelo;
 
 import java.io.IOException;
 import java.util.ArrayList;

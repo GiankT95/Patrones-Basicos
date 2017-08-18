@@ -1,4 +1,4 @@
-package actividad_patrones_basicos;
+package Modelo;
 
 import java.util.ArrayList;
 
@@ -11,13 +11,15 @@ public class Cliente {
     private String nombres;
     private String apellidos;
     private int cedula;
-    private ArrayList<Cuenta> listaCuentas = new ArrayList();
+    private ArrayList<Cuenta> listaCuentas;
+    private Transaccion transaccion;
 
 
     public Cliente(String nombres, String apellidos, int cedula) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.cedula = cedula;
+        this.listaCuentas = new ArrayList();
     }
 
     public void agregarCuenta(Cuenta c) {
@@ -86,6 +88,14 @@ public class Cliente {
     public void setListaCuentas(ArrayList<Cuenta> ListaCuentas) {
         this.listaCuentas = ListaCuentas;
     }
-    
+
+    public Transaccion getTransaccion() {
+        return transaccion;
+    }
+
+    public void setTransaccion(Transaccion transaccion) {
+        this.transaccion = transaccion;
+    }
+      
     
 }
