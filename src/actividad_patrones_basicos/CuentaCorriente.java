@@ -15,7 +15,7 @@ public class CuentaCorriente extends Cuenta{
         this.balance = balance;
         this.setTipo("CORRIENTE");
     }
-
+    
     @Override
     public void hacerDebito(int monto) { 
         Transaccion t = new Transaccion("Debito", monto);
@@ -34,6 +34,7 @@ public class CuentaCorriente extends Cuenta{
 
     @Override
     public String toString() {
-        return "";
+        
+        return String.format(ManejadorConstantes.FORMATO_LISTA_CUENTAS, this.getTipo(), this.getBalance(), this.getTitular().getNombres(), this.getTitular().getApellidos());
     }
 }

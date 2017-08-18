@@ -37,7 +37,7 @@ public class Transaccion {
     
     @Override
     public String toString() {
-      return String.format(ManejadorConstantes.FORMATO_TRANSACCION, this.getFecha(), this.getTipo(), this.getMonto(), this.getCuenta().getTitular().getCedula(), this.getCuenta().getTipo());
+      return String.format(ManejadorConstantes.FORMATO_TRANSACCION, this.getFecha(), this.getTipo(), this.getMonto(), this.getCuenta().getTitular().getNombres(), this.getCuenta().getTitular().getApellidos(), this.getCuenta().getTipo());
     }
 
     public void setFecha(String fecha) {

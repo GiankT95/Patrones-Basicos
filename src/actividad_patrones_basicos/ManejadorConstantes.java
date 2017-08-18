@@ -15,9 +15,10 @@ public class ManejadorConstantes {
     public static String FORMATO_RUTA_TRANSACCIONES = "C:\\Users\\Asus\\Desktop\\transacciones.txt";
     public static String FORMATO_RUTA_CUENTAS = "C:\\Users\\Asus\\Desktop\\cuentas.txt";
     public static String FORMATO_FECHA = "dd/MM/yyyy HH:mm:ss";
-    public static String FORMATO_LISTA_CLIENTES = "%010d;%10s;%10s";
-    public static String FORMATO_LISTA_CUENTAS = "Titular %10s|%10s|%010d";
-    public static String FORMATO_TRANSACCION = "%10s|%10s|Monto %10d|Titular %10d|%10s|";
+    public static String FORMATO_LISTA_CLIENTES = "%010d;%10s;%10s;N° de cuentas %d\n";
+    public static String FORMATO_LISTA_CUENTAS = "%10s;%10d;%10s %10s";
+    public static String FORMATO_LISTA_CUENTAS_CONSOLA = "|%9s | Balance %10d |\n";
+    public static String FORMATO_TRANSACCION = "%10s|%10s|Monto %10d|%10s %10s|%10s|";
     public static int TOPE_SOBREGIRO_CORRIENTE = -500000;   
     
 }

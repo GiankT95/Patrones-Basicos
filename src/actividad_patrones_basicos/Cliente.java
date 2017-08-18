@@ -51,7 +51,7 @@ public class Cliente {
     @Override
     public String toString() {
         //return nombres + " " + apellidos;
-        return String.format(ManejadorConstantes.FORMATO_LISTA_CLIENTES, cedula, nombres, apellidos);
+        return String.format(ManejadorConstantes.FORMATO_LISTA_CLIENTES, cedula, nombres, apellidos, this.getListaCuentas().size());
     }
 
     public String getNombres() {
