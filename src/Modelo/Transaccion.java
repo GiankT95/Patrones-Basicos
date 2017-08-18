@@ -24,7 +24,7 @@ public class Transaccion {
         this.getFecha();
         this.tipo = tipo;
         this.monto = monto;
-        this.tiempo = tiempo;
+        this.getTiempo();
     }
     
     public String getFecha() {
@@ -71,6 +71,8 @@ public class Transaccion {
     }
 
     public int getTiempo() {
+        tiempo = (int) (Math.random()*15) + 5;
+        
         return tiempo;
     }
 
