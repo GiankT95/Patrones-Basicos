@@ -19,6 +19,7 @@ public class ManejadorConstantes {
     public static String FORMATO_LISTA_CUENTAS = "%10s;%10d;%10s %10s";
     public static String FORMATO_LISTA_CUENTAS_CONSOLA = "|%9s | Balance %10d |\n";
     public static String FORMATO_TRANSACCION = "%10s|%10s|Monto %10d|%10s %10s|%10s|";
+    public static String FORMATO_TRANSACCION_CONSOLA = "%10s|%10s|Monto %10d|%10s|\n";
     public static int TOPE_SOBREGIRO_CORRIENTE = -500000;   
     
 }

@@ -88,12 +88,15 @@ public class Index {
                         System.out.printf(ManejadorConstantes.FORMATO_LISTA_CUENTAS_CONSOLA, c.getTipo(),c.getBalance());
                     }
                     
-                    System.out.println("(1) Retirar dinero\n");
-                    System.out.println("(2) Depositar dinero\n");
-                    System.out.println("(3) Volver al menu\n");
+                    System.out.println("\n(1) Retirar dinero");
+                    System.out.println("(2) Depositar dinero");
+                    System.out.println("(3) Ver historial de transacciones");
+                    System.out.println("(4) Volver al menu");
                     System.out.println("Digite una opcion: ");
                     
                     opc = sc.nextInt();
+                    
+                    System.out.println("\n");
                     
                     if(opc == 1){
                        
@@ -112,7 +115,7 @@ public class Index {
                         }while(cta<1 || cta>2);
                         
                         do{
-                            System.out.println("Digite la cantidad a retirar: ");
+                            System.out.println("\nDigite la cantidad que va a retirar: ");
                             monto = sc.nextInt();
                         }while(monto<0);
                         
@@ -124,12 +127,57 @@ public class Index {
                         }
                         
                     }
+                    
+                    if(opc==2){
+                        
+                        int monto;
+                        int cta;
+                        int cont=1;
+                        
+                        for(Cuenta c : cliente1.getListaCuentas()){
+                            System.out.printf("(%d)"+ManejadorConstantes.FORMATO_LISTA_CUENTAS_CONSOLA, cont, c.getTipo(),c.getBalance());
+                            cont++;
+                        }
+                       
+                        do{
+                            System.out.println("Seleccione la cuenta a la que va a depositar: ");
+                            cta = sc.nextInt();
+                        }while(cta<1 || cta>2);
+                        
+                        do{
+                            System.out.println("\nDigite la cantidad que va a depositar: ");
+                            monto = sc.nextInt();
+                        }while(monto<0);
+                        
+                        if(cta==1){
+                            cliente1.depositarDinero(monto, cuenta1);
+                        }
+                        if(cta==2){
+                            cliente1.depositarDinero(monto, cuenta2);
+                        }
+                        
+                        
+                    }
+                    
+                    if(opc==3){
+                        for(Cuenta e : cliente1.getListaCuentas()){
+                            for(Transaccion t : e.getListaTrans()){
+                                if(e.getListaTrans().isEmpty()){
+                                    System.out.println("No ha realizado ninguna transaccion\n");
+                                }
+                                else{
+                                    System.out.printf(ManejadorConstantes.FORMATO_TRANSACCION_CONSOLA, t.getFecha(), t.getTipo(), t.getMonto(), t.getCuenta().getTipo());
+                                }
+                            }
+                        }
+                    }
+                    
                 }
                 
-                if(opc<1 || opc>3){
+                if(opc<1 || opc>4){
                     System.out.println("\nDIGITE UNA OPCION VALIDA\n");
                 }
-            }while(opc==1 || opc ==2);
+            }while(opc==1 || opc ==2 || opc==3 || opc==4);
         }
         
     }
