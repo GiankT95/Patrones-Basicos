@@ -17,24 +17,13 @@ public class CuentaCorriente extends Cuenta{
     }
     
     @Override
-    public void hacerDebito(int monto) { 
-        Transaccion t = new Transaccion("Debito", monto);
-        this.listaTrans.add(t);
-        this.setBalance(balance - monto);
-        t.setCuenta(this);
-    }
-    
-    @Override
-    public void hacerCredito(int monto) {
-        Transaccion t = new Transaccion("Credito", monto);
-        this.listaTrans.add(t);
-        this.setBalance(balance + monto);
-        t.setCuenta(this);
-    }
-
-    @Override
     public String toString() {
         
         return String.format(ManejadorConstantes.FORMATO_LISTA_CUENTAS, this.getTipo(), this.getBalance(), this.getTitular().getNombres(), this.getTitular().getApellidos());
+    }
+
+    @Override
+    public void agregarTransaccion(Transaccion t) {
+        this.getListaTrans().add(t);
     }
 }

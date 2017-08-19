@@ -25,22 +25,16 @@ public class Banco {
         listaCajeras = new ArrayList();
     }
     
-    public Cliente agregarCliente(String nombre, String apellido,int cedula){
-        Cliente clienteNuevo = new Cliente(nombre, apellido, cedula);
+    public void agregarCliente(Cliente clienteNuevo){
         this.listaClientes.add(clienteNuevo);
-        
-        return clienteNuevo;
     }
     
     public void eliminarCliente(Cliente c){
         this.listaClientes.remove(c);
     }
     
-    public Cajera agregarCajera(String nombre, long it){
-        Cajera nuevaCajera = new Cajera(nombre, it);
-        this.listaCajeras.add(nuevaCajera);
-        
-        return nuevaCajera;
+    public void agregarCajera(Cajera cajeraNueva){
+        this.listaCajeras.add(cajeraNueva);        
     }
     
     public void eliminarCajera(Cajera c){
@@ -71,20 +65,29 @@ public class Banco {
         this.nombre = nombre;
     }
 
-    public ArrayList<Cliente> getClientes() {
+    public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
 
-    public void setClientes(ArrayList<Cliente> clientes) {
-        this.listaClientes = clientes;
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
     }
 
-    public ArrayList<Cajera> getCajeras() {
+    public ArrayList<Cajera> getListaCajeras() {
         return listaCajeras;
     }
 
-    public void setCajeras(ArrayList<Cajera> cajeras) {
-        this.listaCajeras = cajeras;
+    public void setListaCajeras(ArrayList<Cajera> listaCajeras) {
+        this.listaCajeras = listaCajeras;
     }
+
+    public static Iterator getClientes() {
+        return clientes;
+    }
+
+    public static void setClientes(Iterator clientes) {
+        Banco.clientes = clientes;
+    }
+    
     
 }

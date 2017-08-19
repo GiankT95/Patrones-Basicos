@@ -37,6 +37,16 @@ public class Transaccion {
         return fecha;
     }
     
+    public void hacerDebito(int monto, Cuenta deCuenta) { 
+        deCuenta.setBalance(deCuenta.getBalance() - monto);
+        this.setCuenta(deCuenta);   
+    }
+    
+    public void hacerCredito(int monto, Cuenta aCuenta) {
+        aCuenta.setBalance(aCuenta.getBalance() + monto);
+        this.setCuenta(aCuenta);
+    }
+    
     @Override
     public String toString() {
       return String.format(ManejadorConstantes.FORMATO_TRANSACCION, this.getFecha(), this.getTipo(), this.getMonto(), this.getCuenta().getTitular().getNombres(), this.getCuenta().getTitular().getApellidos(), this.getCuenta().getTipo());

@@ -25,12 +25,21 @@ public class Cajera extends Thread{
             while (true) {
                 Cliente cliente = Banco.siguienteCliente();
                 
-                //this.esperarXsegundos(int seg);
-                
+                this.esperarXsegundos(cliente.getTransaccion().getTiempo());
+
+                System.out.println("Procesada la transaccion ("+cliente.getTransaccion()+") del cliente " +
+                                   cliente.getNombres() +" "+ cliente.getApellidos() + " por " +
+                                   this.getNombre() + " en " + (System.currentTimeMillis() - this.initialTime) / 1000
+                                   +"seg");
             }
         } catch (Exception e) {
             System.out.println("La cajera " + this.nombre + " no tiene mas clientes que atender!");
         }
+    }
+    
+    @Override
+    public void run() {
+        procesarTransaccion();
     }
     
     public String getNombre() {

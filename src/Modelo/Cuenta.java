@@ -18,9 +18,8 @@ public abstract class Cuenta {
     public Cliente titular;
     public ArrayList<Transaccion> listaTrans = new ArrayList();
 
-    public abstract void hacerDebito(int monto);
+    public abstract void agregarTransaccion(Transaccion t);
     
-    public abstract void hacerCredito(int monto);
     
     @Override
     public abstract String toString();
