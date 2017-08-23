@@ -23,7 +23,7 @@ public class Banco {
         this.nombre = nombre;
         listaClientes = new ArrayList();
         listaCajeras = new ArrayList();
-        clientes = listaClientes.iterator();
+        
     }
     
     public void agregarCliente(Cliente clienteNuevo){

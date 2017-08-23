@@ -52,16 +52,14 @@ public class Index {
         c6.transaccionAleatoria(180000);
         c7.transaccionAleatoria(90000);
         
-        /*cajera1.start();
-        cajera2.start();*/
+        cajera1.start();
+        cajera2.start();
         
-        for(Cliente c : banco.getListaClientes()){
-            System.out.println(c.getNombres());
-        }
+        /*for(Cuenta c : c1.getListaCuentas()){
+            System.out.println(c.getTipo());
+        }*/
         
-        for(Cajera c : banco.getListaCajeras()){
-            System.out.println(c.getNombre());
-        }
+        
         
         /*manejadorCliente.crearArchivo();
         manejadorCtas.crearArchivo();
