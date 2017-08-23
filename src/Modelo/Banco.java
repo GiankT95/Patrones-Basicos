@@ -15,18 +15,17 @@ import java.util.Iterator;
 public class Banco {
     
     private String nombre;
-    private ArrayList<Cliente> listaClientes;
+    private static ArrayList<Cliente> listaClientes;
     private ArrayList<Cajera> listaCajeras;
     public static Iterator clientes;
     
     public Banco(String nombre){
         this.nombre = nombre;
         listaClientes = new ArrayList();
-        listaCajeras = new ArrayList();
-        
+        listaCajeras = new ArrayList();        
     }
     
-    public void agregarCliente(Cliente clienteNuevo){
+    public void agregarCliente(Cliente clienteNuevo){        
         this.listaClientes.add(clienteNuevo);
     }
     
@@ -42,11 +41,15 @@ public class Banco {
         this.listaCajeras.remove(c);
     }
     
-    public static Cliente siguienteCliente() throws Exception {
-        if (clientes.hasNext()) {
-            return (Cliente) clientes.next();
-        } else {
-            throw new Exception("No hay mas clientes");
+    public synchronized static Cliente siguienteCliente() throws Exception {
+        if(!listaClientes.isEmpty()){
+            Cliente aux = listaClientes.get(0);
+            listaClientes.remove(0);
+            
+            return aux;
+        }
+        else{
+           throw new Exception("No hay mas clientes por atender");
         }
     }
 

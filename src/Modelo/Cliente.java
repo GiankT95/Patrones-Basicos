@@ -49,8 +49,8 @@ public class Cliente {
     
     public void transaccionAleatoria(int monto){
         Random rnd = new Random();    
-        int r = (int) (rnd.nextDouble()*this.getListaCuentas().size() + 1);
-        
+        int r = (int) (rnd.nextDouble()*2 + 1);
+
         if(r == 1){
             this.retirarDinero(monto, this.cuentaAleatoria());
         }

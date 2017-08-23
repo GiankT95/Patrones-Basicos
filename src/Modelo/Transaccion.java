@@ -7,6 +7,7 @@ package Modelo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 /**
  *
@@ -81,7 +82,9 @@ public class Transaccion {
     }
 
     public int getTiempo() {
-        tiempo = (int) (Math.random()*15) + 5;
+        Random r = new Random();
+        
+        tiempo = (int) (r.nextDouble()*10 + 5);
         
         return tiempo;
     }

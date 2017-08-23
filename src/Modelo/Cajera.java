@@ -5,13 +5,12 @@
  */
 package Modelo;
 
-
 /**
  *
  * @author Fuller 101
  */
-public class Cajera extends Thread{
-    
+public class Cajera extends Thread {
+
     private String nombre;
     private long initialTime;
 
@@ -20,28 +19,30 @@ public class Cajera extends Thread{
         this.initialTime = initialTime;
     }
 
-    public void procesarTransaccion(){
+    public void procesarTransaccion() {
+        Cliente cliente = null;
+
         try {
             while (true) {
-                Cliente cliente = Banco.siguienteCliente();
-                
+                cliente = Banco.siguienteCliente();
+
                 this.esperarXsegundos(cliente.getTransaccion().getTiempo());
 
-                System.out.println("Procesada la transaccion ("+cliente.getTransaccion()+") del cliente " +
-                                   cliente.getNombres() +" "+ cliente.getApellidos() + " por " +
-                                   this.getNombre() + " en " + (System.currentTimeMillis() - this.initialTime) / 1000
-                                   +"seg");
+                System.out.println("Procesada la transaccion (" + cliente.getTransaccion().getTipo() + ") del cliente "
+                        + cliente.getNombres() + " " + cliente.getApellidos() + " por "
+                        + this.getNombre() + "; Tiempo --> " + (System.currentTimeMillis() - this.initialTime) / 1000
+                        + "seg");
             }
         } catch (Exception e) {
             System.out.println("La cajera " + this.nombre + " no tiene mas clientes que atender!");
         }
     }
-    
+
     @Override
     public void run() {
         procesarTransaccion();
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -57,7 +58,7 @@ public class Cajera extends Thread{
     public void setInitialTime(long initialTime) {
         this.initialTime = initialTime;
     }
-    
+
     private void esperarXsegundos(int segundos) {
         try {
             Thread.sleep(segundos * 1000);
@@ -65,5 +66,5 @@ public class Cajera extends Thread{
             Thread.currentThread().interrupt();
         }
     }
-    
+
 }

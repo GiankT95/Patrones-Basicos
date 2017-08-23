@@ -31,7 +31,7 @@ public class Index {
         long initialTime = System.currentTimeMillis();
         
         Cajera cajera1 = new Cajera("Viviana", initialTime);
-        Cajera cajera2 = new Cajera("Lina", initialTime);
+        Cajera cajera2 = new Cajera("Camila", initialTime);
         
         banco.agregarCajera(cajera1);
         banco.agregarCajera(cajera2);
@@ -52,14 +52,9 @@ public class Index {
         c6.transaccionAleatoria(180000);
         c7.transaccionAleatoria(90000);
         
+
         cajera1.start();
         cajera2.start();
-        
-        /*for(Cuenta c : c1.getListaCuentas()){
-            System.out.println(c.getTipo());
-        }*/
-        
-        
         
         /*manejadorCliente.crearArchivo();
         manejadorCtas.crearArchivo();
