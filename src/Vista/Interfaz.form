@@ -40,7 +40,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="f5" green="e8" red="d0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -68,13 +68,13 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="f5" green="e8" red="d0" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="2" position="2" title="Banco Central">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder roundedCorners="true" thickness="2"/>
+                    <LineBorder/>
                   </Border>
                   <Font PropertyName="font" name="Tahoma" size="18" style="1"/>
                 </TitledBorder>
@@ -86,14 +86,30 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPaneClientes" pref="241" max="32767" attributes="0"/>
-                          <Component id="jScrollPaneCajeras" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="jButtonCrearUsuario" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jButtonEliminarUsuario" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPaneCajeras" min="-2" pref="241" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPaneClientes" alignment="1" min="-2" pref="241" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="jButtonCrearCajera" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButtonEliminarCajera" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSeparator1" min="-2" pref="2" max="-2" attributes="0"/>
-                      <EmptySpace pref="444" max="32767" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="456" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -104,9 +120,19 @@
                           <Component id="jSeparator1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPaneClientes" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButtonCrearUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonEliminarUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Component id="jScrollPaneCajeras" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButtonCrearCajera" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonEliminarCajera" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -124,23 +150,18 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="orientation" type="int" value="1"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
-                  </Border>
-                </Property>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPaneClientes">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="f5" green="e8" red="d0" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder justification="1" position="1" title="Clientes">
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="2"/>
+                        <LineBorder roundedCorners="true"/>
                       </Border>
                       <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
                     </TitledBorder>
@@ -174,13 +195,13 @@
             <Container class="javax.swing.JScrollPane" name="jScrollPaneCajeras">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="f5" green="e8" red="d0" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder justification="1" position="1" title="Cajeras">
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="2"/>
+                        <LineBorder roundedCorners="true"/>
                       </Border>
                       <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
                     </TitledBorder>
@@ -211,6 +232,29 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jButtonCrearUsuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear Usuario"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCrearUsuarioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonEliminarUsuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar Usuario"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonCrearCajera">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear Cajera"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonEliminarCajera">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar Cajera"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

@@ -52,15 +52,16 @@ public class Index {
         c6.transaccionAleatoria(180000);
         c7.transaccionAleatoria(90000);
         
-        cajera1.start();
-        cajera2.start();
+        /*cajera1.start();
+        cajera2.start();*/
         
-        /*
-        Cuenta cuenta1 = new CuentaAhorros(850000);
-        Cuenta cuenta2 = new CuentaCorriente(500000);
-        Cuenta cuenta3 = new CuentaAhorros(745600);
-        Cuenta cuenta4 = new CuentaCorriente(985800);
-        */
+        for(Cliente c : banco.getListaClientes()){
+            System.out.println(c.getNombres());
+        }
+        
+        for(Cajera c : banco.getListaCajeras()){
+            System.out.println(c.getNombre());
+        }
         
         /*manejadorCliente.crearArchivo();
         manejadorCtas.crearArchivo();

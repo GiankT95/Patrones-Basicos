@@ -37,23 +37,26 @@ public class Interfaz extends javax.swing.JFrame {
         jListClientes = new javax.swing.JList<>();
         jScrollPaneCajeras = new javax.swing.JScrollPane();
         jListCajeras = new javax.swing.JList<>();
+        jButtonCrearUsuario = new javax.swing.JButton();
+        jButtonEliminarUsuario = new javax.swing.JButton();
+        jButtonCrearCajera = new javax.swing.JButton();
+        jButtonEliminarCajera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Banco Central");
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(208, 232, 245));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Banco Central", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(208, 232, 245));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Banco Central", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jScrollPaneClientes.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPaneClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jScrollPaneClientes.setBackground(new java.awt.Color(208, 232, 245));
+        jScrollPaneClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jListClientes.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -62,8 +65,8 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jScrollPaneClientes.setViewportView(jListClientes);
 
-        jScrollPaneCajeras.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPaneCajeras.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Cajeras", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jScrollPaneCajeras.setBackground(new java.awt.Color(208, 232, 245));
+        jScrollPaneCajeras.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Cajeras", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jListCajeras.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -72,18 +75,43 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jScrollPaneCajeras.setViewportView(jListCajeras);
 
+        jButtonCrearUsuario.setText("Crear Usuario");
+        jButtonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCrearUsuarioActionPerformed(evt);
+            }
+        });
+
+        jButtonEliminarUsuario.setText("Eliminar Usuario");
+
+        jButtonCrearCajera.setText("Crear Cajera");
+
+        jButtonEliminarCajera.setText("Eliminar Cajera");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPaneClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(jScrollPaneCajeras))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(jButtonCrearUsuario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButtonEliminarUsuario))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPaneCajeras, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPaneClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCrearCajera)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonEliminarCajera)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(456, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,9 +120,17 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jSeparator1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPaneClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonCrearUsuario)
+                            .addComponent(jButtonEliminarUsuario))
+                        .addGap(46, 46, 46)
                         .addComponent(jScrollPaneCajeras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 73, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonCrearCajera)
+                            .addComponent(jButtonEliminarCajera))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -128,6 +164,10 @@ public class Interfaz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCrearUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,6 +205,10 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCrearCajera;
+    private javax.swing.JButton jButtonCrearUsuario;
+    private javax.swing.JButton jButtonEliminarCajera;
+    private javax.swing.JButton jButtonEliminarUsuario;
     private javax.swing.JList<String> jListCajeras;
     private javax.swing.JList<String> jListClientes;
     private javax.swing.JPanel jPanel1;

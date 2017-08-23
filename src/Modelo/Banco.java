@@ -15,14 +15,15 @@ import java.util.Iterator;
 public class Banco {
     
     private String nombre;
-    public static Iterator clientes;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Cajera> listaCajeras;
+    public static Iterator clientes;
     
     public Banco(String nombre){
         this.nombre = nombre;
         listaClientes = new ArrayList();
         listaCajeras = new ArrayList();
+        clientes = listaClientes.iterator();
     }
     
     public void agregarCliente(Cliente clienteNuevo){
