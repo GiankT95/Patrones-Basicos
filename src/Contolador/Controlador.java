@@ -45,6 +45,14 @@ public class Controlador {
         banco.agregarCliente(c6);
         banco.agregarCliente(c7);
         
+        c1.transaccionAleatoria(500000);
+        c2.transaccionAleatoria(250000);
+        c3.transaccionAleatoria(485000);
+        c4.transaccionAleatoria(125000);
+        c5.transaccionAleatoria(340000);
+        c6.transaccionAleatoria(180000);
+        c7.transaccionAleatoria(90000);
+        
     }
 
     public Banco getBanco() {

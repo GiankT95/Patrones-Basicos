@@ -20,11 +20,11 @@ public class Cajera extends Thread {
     }
 
     public void procesarTransaccion() {
-        Cliente cliente = null;
+        //Cliente cliente = null;
 
         try {
             while (true) {
-                cliente = Banco.siguienteCliente();
+               Cliente cliente = Banco.siguienteCliente();
 
                 this.esperarXsegundos(cliente.getTransaccion().getTiempo());
 

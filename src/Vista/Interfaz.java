@@ -111,6 +111,7 @@ public class Interfaz extends javax.swing.JFrame {
         listaClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         listaClientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         listaClientes.setModel(modelo1);
+        listaClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listaClientes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listaClientesValueChanged(evt);
@@ -226,9 +227,19 @@ public class Interfaz extends javax.swing.JFrame {
 
         btnIniciar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnIniciar.setText("Iniciar");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
 
         btnDetener.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnDetener.setText("Detener");
+        btnDetener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetenerActionPerformed(evt);
+            }
+        });
 
         areaConsola.setEditable(false);
         areaConsola.setColumns(20);
@@ -298,7 +309,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPaneConsola, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                        .addComponent(scrollPaneConsola))
                     .addComponent(jScrollPaneCajeras, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -374,21 +385,36 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
         
+        int index = listaClientes.getSelectedIndex();
+        
         try{
             
-            int index = listaClientes.getSelectedIndex();
+            modelo1.remove(index);
             
             Cliente cliente = (Cliente) control.getBanco().getListaClientes().get(index);
             
             control.getBanco().eliminarCliente(cliente);
             
-            modelo1.remove(index);
+            
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(this, "Seleccione un cliente!");
         }
      
     }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+
+        control.getBanco().iniciarCajeras();
+        
+        
+        
+    }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerActionPerformed
+
+        control.getBanco().detenerCajeras();
+    }//GEN-LAST:event_btnDetenerActionPerformed
 
     /**
      * @param args the command line arguments

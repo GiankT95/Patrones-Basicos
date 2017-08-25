@@ -7,6 +7,8 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -50,6 +52,20 @@ public class Banco {
         }
         else{
            throw new Exception("No hay mas clientes por atender");
+        }
+    }
+    
+    public void iniciarCajeras(){
+        
+        for(Cajera c : this.listaCajeras){
+            c.start();
+        }
+    }
+    
+    public void detenerCajeras(){
+        
+        for(Cajera c : this.listaCajeras){
+            c.stop();
         }
     }
 
