@@ -19,7 +19,7 @@ public class ScooterElectrica extends Scooter{
     }
 
     @Override
-    public void fabricarScooter() {
+    public void imprimirScooter() {
         System.out.println("Nueva scooter "+this.getTipo()+" marca " +this.getMarca()+ " de color " +this.getColor()+ " fabricada");
     }
     

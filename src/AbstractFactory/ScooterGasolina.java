@@ -18,7 +18,7 @@ public class ScooterGasolina extends Scooter{
     }
     
     @Override
-    public void fabricarScooter() {
+    public void imprimirScooter() {
         System.out.println("Nueva scooter " +this.getTipo()+ " de marca " +this.getMarca()+ " y color " +this.getColor()+ " ha sido fabricada");
     }
     

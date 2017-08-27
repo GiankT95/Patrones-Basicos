@@ -16,7 +16,7 @@ public abstract class Scooter {
     public String marca;
     public String tipo;
 
-    public abstract void fabricarScooter();
+    public abstract void imprimirScooter();
     
     public String getColor() {
         return color;

@@ -15,7 +15,7 @@ public abstract class Automovil {
     public String color;
     public String tipo;
 
-    public abstract void fabricarAutomovil();
+    public abstract void imprimirAutomovil();
     
     public String getMarca() {
         return marca;

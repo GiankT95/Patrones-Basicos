@@ -18,7 +18,7 @@ public class AutomovilElectrico extends Automovil{
     }
     
     @Override
-    public void fabricarAutomovil() {
+    public void imprimirAutomovil() {
         System.out.println("Nuevo vehiculo "+this.getTipo()+" marca " +this.getMarca()+ " de color " +this.getColor()+ " ha sido fabricado");
     }
     

@@ -20,12 +20,12 @@ public class Catalogo {
         if(tipo.equals("e")){
             FabricaVehiculo fabrica = new VehiculoElectricidad();
             Automovil auto = fabrica.crearAutomovil(marca, color);
-            auto.fabricarAutomovil();
+            auto.imprimirAutomovil();
         }
         if(tipo.equals("g")){
             FabricaVehiculo fabrica = new VehiculoGasolina();
             Automovil auto = fabrica.crearAutomovil(marca, color);
-            auto.fabricarAutomovil();
+            auto.imprimirAutomovil();
         }  
     }
     
@@ -33,12 +33,12 @@ public class Catalogo {
         if(tipo.equals("e")){
             FabricaVehiculo fabrica = new VehiculoElectricidad();
             Scooter scooter = fabrica.crearScooter(marca, color);
-            scooter.fabricarScooter();
+            scooter.imprimirScooter();
         }
         if(tipo.equals("g")){
             FabricaVehiculo fabrica = new VehiculoGasolina();
             Scooter scooter = fabrica.crearScooter(marca, color);
-            scooter.fabricarScooter();
+            scooter.imprimirScooter();
         }    
     }
 }
