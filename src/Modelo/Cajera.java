@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Fuller 101
@@ -19,21 +22,24 @@ public class Cajera extends Thread {
         this.initialTime = initialTime;
     }
 
-    public void procesarTransaccion() {
+    public synchronized void procesarTransaccion() {
         //Cliente cliente = null;
 
         try {
             while (true) {
-               Cliente cliente = Banco.siguienteCliente();
+                Cliente cliente = Banco.siguienteCliente();
+     
+                for(Transaccion t : cliente.getListaTrans()){
+                    this.esperarXsegundos(t.getTiempo());
 
-                this.esperarXsegundos(cliente.getTransaccion().getTiempo());
-
-                System.out.println("Procesada la transaccion (" + cliente.getTransaccion().getTipo() + ") del cliente "
+                    System.out.println("Procesada la transaccion (" + t.getTipo() + ") del cliente "
                         + cliente.getNombres() + " " + cliente.getApellidos() + " por "
                         + this.getNombre() + "; Tiempo --> " + (System.currentTimeMillis() - this.initialTime) / 1000
                         + "seg");
+                }    
             }
         } catch (Exception e) {
+         
             System.out.println("La cajera " + this.nombre + " no tiene mas clientes que atender!");
         }
     }

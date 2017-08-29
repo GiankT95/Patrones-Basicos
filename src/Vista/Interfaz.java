@@ -363,16 +363,14 @@ public class Interfaz extends javax.swing.JFrame {
         
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la nueva Cajera:");
         
-        Cajera cajeraNueva = new Cajera(nombre, initialTime);
-        
-        control.getBanco().agregarCajera(cajeraNueva);
+        Cajera cajeraNueva = control.agregarCajera(nombre);
         
         modelo2.addElement(cajeraNueva.getNombre());
     }//GEN-LAST:event_btnCrearCajeraActionPerformed
 
     private void listaClientesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaClientesValueChanged
         
-        int index = listaClientes.getSelectedIndex();
+        /*int index = listaClientes.getSelectedIndex();
         
         Cliente cliente = (Cliente) control.getBanco().getListaClientes().get(index);
         
@@ -380,7 +378,7 @@ public class Interfaz extends javax.swing.JFrame {
         tfApellidos.setText(cliente.getApellidos());
         tfCedula.setText(String.valueOf(cliente.getCedula()));
         tfCuentas.setText(String.valueOf(cliente.getListaCuentas().size()));
-        
+        */
     }//GEN-LAST:event_listaClientesValueChanged
 
     private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
@@ -393,7 +391,7 @@ public class Interfaz extends javax.swing.JFrame {
             
             Cliente cliente = (Cliente) control.getBanco().getListaClientes().get(index);
             
-            control.getBanco().eliminarCliente(cliente);
+            control.eliminarCliente(cliente);
             
             
         }
@@ -413,7 +411,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void btnDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerActionPerformed
 
-        control.getBanco().detenerCajeras();
+        
     }//GEN-LAST:event_btnDetenerActionPerformed
 
     /**

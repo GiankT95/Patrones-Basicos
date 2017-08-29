@@ -20,6 +20,7 @@ public class Transaccion {
     private int monto;
     private int tiempo;
     private Cuenta cuenta;
+    public Cliente cliente;
 
     public Transaccion(String tipo, int monto) {
         this.getFecha();
@@ -63,6 +64,14 @@ public class Transaccion {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Cuenta getCuenta() {

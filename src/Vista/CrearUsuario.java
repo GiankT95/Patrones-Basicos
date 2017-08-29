@@ -153,11 +153,9 @@ public class CrearUsuario extends javax.swing.JFrame {
         String apellido = jTextFieldApellidos.getText();
         int cedula = Integer.parseInt(jTextFieldCedula.getText());
         
-        Cliente clienteNuevo = new Cliente(nombre, apellido, cedula);
+        Cliente clienteNuevo = Interfaz.control.agregarCliente(nombre, apellido, cedula);
         
         modelo1.addElement(clienteNuevo.getNombres());
-        
-        Interfaz.control.getBanco().agregarCliente(clienteNuevo);
         
         jTextFieldNombre.setText("");
         jTextFieldApellidos.setText("");

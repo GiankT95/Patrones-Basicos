@@ -8,6 +8,9 @@ package Contolador;
 import Modelo.Banco;
 import Modelo.Cajera;
 import Modelo.Cliente;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,42 +19,63 @@ import Modelo.Cliente;
 public class Controlador {
     
     public Banco banco;
+    long initialTime = System.currentTimeMillis();
     
     public Controlador(){
         
         banco = new Banco("Davivienda");
         
-        Cliente c1 = new Cliente("Jorge", "Rudas", 1673728);
-        Cliente c2 = new Cliente("Daniela", "Castillo", 1890458);
-        Cliente c3 = new Cliente("Giancarlo", "Tovar", 10262937);
-        Cliente c4 = new Cliente("Maria", "Rodriguez", 14296782);
-        Cliente c5 = new Cliente("Juan", "Martinez", 1892362);
-        Cliente c6 = new Cliente("Nicolas", "Perez", 1723621);
-        Cliente c7 = new Cliente("Alejandra", "Acosta", 1383272);
-                
-        long initialTime = System.currentTimeMillis();
+        this.setBanco(banco);
         
-        Cajera cajera1 = new Cajera("Viviana", initialTime);
-        Cajera cajera2 = new Cajera("Camila", initialTime);
+    }
+    
+    public synchronized Cajera agregarCajera(String nombre){
+        Cajera c = new Cajera(nombre, initialTime);
+        banco.getListaCajeras().add(c);
+        c.start();
+        this.recibirCliente();
         
-        banco.agregarCajera(cajera1);
-        banco.agregarCajera(cajera2);
+        return c;
+    }
+    
+    public synchronized Cliente agregarCliente(String nombre, String apellido, int cedula){
         
-        banco.agregarCliente(c1);
-        banco.agregarCliente(c2);
-        banco.agregarCliente(c3);
-        banco.agregarCliente(c4);
-        banco.agregarCliente(c5);
-        banco.agregarCliente(c6);
-        banco.agregarCliente(c7);
+        Cliente e = new Cliente(nombre, apellido, cedula);
         
-        c1.transaccionAleatoria(500000);
-        c2.transaccionAleatoria(250000);
-        c3.transaccionAleatoria(485000);
-        c4.transaccionAleatoria(125000);
-        c5.transaccionAleatoria(340000);
-        c6.transaccionAleatoria(180000);
-        c7.transaccionAleatoria(90000);
+        synchronized(banco.getListaClientes()){
+        
+            banco.getListaClientes().add(e);
+            banco.getListaClientes().notify();
+
+        }
+        
+        return e;
+    }
+    
+    public synchronized void eliminarCliente(Cliente e){
+        
+        synchronized(banco.getListaClientes()){
+        
+            banco.getListaClientes().remove(e);
+            banco.getListaClientes().notify();
+
+        }
+    }
+    
+    public synchronized Cliente recibirCliente(){
+        
+        if(banco.getListaClientes().isEmpty()){
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        Cliente cliente = banco.getListaClientes().get(0);
+        banco.getListaClientes().remove(0);
+        
+        return cliente;
         
     }
 

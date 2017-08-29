@@ -19,7 +19,6 @@ public class Banco {
     private String nombre;
     private static ArrayList<Cliente> listaClientes;
     private ArrayList<Cajera> listaCajeras;
-    public static Iterator clientes;
     
     public Banco(String nombre){
         this.nombre = nombre;
@@ -28,7 +27,8 @@ public class Banco {
     }
     
     public void agregarCliente(Cliente clienteNuevo){        
-        this.listaClientes.add(clienteNuevo);
+        
+        listaClientes.add(clienteNuevo);
     }
     
     public void eliminarCliente(Cliente c){
@@ -62,12 +62,19 @@ public class Banco {
         }
     }
     
-    public void detenerCajeras(){
+    /*public synchronized void detenerCajeras() throws InterruptedException{
         
-        for(Cajera c : this.listaCajeras){
-            c.stop();
+        if(!listaCajeras.isEmpty()){
+            
+            for(Cajera c : this.listaCajeras){
+               c.wait();
+            }
         }
-    }
+        
+        else{
+            throw new InterruptedException("No hay cajeras");
+        }
+    }*/
 
     public int numClientes(){
         return this.listaClientes.size();
@@ -99,14 +106,6 @@ public class Banco {
 
     public void setListaCajeras(ArrayList<Cajera> listaCajeras) {
         this.listaCajeras = listaCajeras;
-    }
-
-    public static Iterator getClientes() {
-        return clientes;
-    }
-
-    public static void setClientes(Iterator clientes) {
-        Banco.clientes = clientes;
     }
     
     

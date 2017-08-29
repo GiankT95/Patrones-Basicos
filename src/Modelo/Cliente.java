@@ -13,7 +13,7 @@ public class Cliente {
     private String apellidos;
     private int cedula;
     private ArrayList<Cuenta> listaCuentas;
-    private Transaccion transaccion;
+    private ArrayList<Transaccion> listaTrans;
 
 
     public Cliente(String nombres, String apellidos, int cedula) {
@@ -21,7 +21,9 @@ public class Cliente {
         this.apellidos = apellidos;
         this.cedula = cedula;
         this.listaCuentas = new ArrayList();
+        this.listaTrans = new ArrayList();
         this.crearCuentas();
+        this.transaccionAleatoria(50000);
     }
 
     public void agregarCuenta(Cuenta c) {
@@ -36,15 +38,20 @@ public class Cliente {
     public void retirarDinero(int monto, Cuenta deCuenta) {
         Transaccion t = new Transaccion("Retiro", monto);
         t.hacerDebito(monto, deCuenta);
-        deCuenta.agregarTransaccion(t);
-        this.setTransaccion(t);
+        this.agregarTransaccion(t);
+        t.setCuenta(deCuenta);
     }
     
     public void depositarDinero(int monto, Cuenta aCuenta) {      
         Transaccion t = new Transaccion("Deposito", monto);
         t.hacerCredito(monto, aCuenta);
-        aCuenta.agregarTransaccion(t);
-        this.setTransaccion(t);
+        this.agregarTransaccion(t);
+        t.setCuenta(aCuenta);
+    }
+    
+    public void agregarTransaccion(Transaccion t) {
+        this.getListaTrans().add(t);
+        t.setCliente(this);
     }
     
     public void transaccionAleatoria(int monto){
@@ -127,13 +134,15 @@ public class Cliente {
         this.listaCuentas = ListaCuentas;
     }
 
-    public Transaccion getTransaccion() {
-        return transaccion;
+    public ArrayList<Transaccion> getListaTrans() {
+        return listaTrans;
     }
 
-    public void setTransaccion(Transaccion transaccion) {
-        this.transaccion = transaccion;
+    public void setListaTrans(ArrayList<Transaccion> listaTransacciones) {
+        this.listaTrans = listaTransacciones;
     }
+
+    
       
     
 }
