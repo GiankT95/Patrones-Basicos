@@ -2,6 +2,7 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  * Esta clase encapsula las propiedades y comportamientos de un cliente
@@ -23,7 +24,8 @@ public class Cliente {
         this.listaCuentas = new ArrayList();
         this.listaTrans = new ArrayList();
         this.crearCuentas();
-        this.transaccionAleatoria(50000);
+        this.transaccionAleatoria();
+        
     }
 
     public void agregarCuenta(Cuenta c) {
@@ -54,17 +56,35 @@ public class Cliente {
         t.setCliente(this);
     }
     
-    public void transaccionAleatoria(int monto){
+    public void transaccionAleatoria(){
         Random rnd = new Random();    
-        int r = (int) (rnd.nextDouble()*2 + 1);
-
-        if(r == 1){
-            this.retirarDinero(monto, this.cuentaAleatoria());
-        }
         
-        if(r == 2){
-            this.depositarDinero(monto, this.cuentaAleatoria());          
-        }
+        int x = (int) (rnd.nextDouble()*3 + 1);
+        
+        int cont=0;
+
+        do{
+            int r = (int) (rnd.nextDouble()*2 + 1);
+            
+            if(r == 1){
+                int monto = (int) (rnd.nextDouble()*500000 + 10000);
+                
+                if(monto>this.cuentaAleatoria().getBalance()){
+                    JOptionPane.showMessageDialog(null, "Saldo insuficiente!");
+                            
+                }
+                else{
+                    this.retirarDinero(monto, this.cuentaAleatoria());
+                }
+            }
+
+            if(r == 2){
+                int monto = (int) (rnd.nextDouble()*500000 + 10000);
+                
+                this.depositarDinero(monto, this.cuentaAleatoria());          
+            }
+            cont++;
+        }while(cont<x);
     }
     
     public Cuenta cuentaAleatoria(){
@@ -83,13 +103,13 @@ public class Cliente {
         int t = (int) (x.nextDouble()*3 + 1);
         
         for(int i=0; i<s; i++){
-            int r = (int) (x.nextDouble()*5000000 + 100000);
+            int r = (int) (x.nextDouble()*5000000 + 1000000);
             Cuenta a = new CuentaAhorros(r);
             this.agregarCuenta(a);
         }
         
         for(int i=0; i<t; i++){
-            int r = (int) (x.nextDouble()*5000000 + 100000);
+            int r = (int) (x.nextDouble()*5000000 + 1000000);
             Cuenta b = new CuentaCorriente(r);
             this.agregarCuenta(b);
         }

@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Modelo.Banco;
 import Modelo.Cliente;
 import static Vista.Interfaz.modelo1;
 
@@ -149,17 +150,21 @@ public class CrearUsuario extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
+        synchronized(Banco.getListaClientes()){
+        Banco.getListaClientes().notifyAll();
+        
         String nombre = jTextFieldNombre.getText();
         String apellido = jTextFieldApellidos.getText();
         int cedula = Integer.parseInt(jTextFieldCedula.getText());
         
         Cliente clienteNuevo = Interfaz.control.agregarCliente(nombre, apellido, cedula);
-        
         modelo1.addElement(clienteNuevo.getNombres());
+        
         
         jTextFieldNombre.setText("");
         jTextFieldApellidos.setText("");
         jTextFieldCedula.setText("");
+        }
         
         this.setVisible(false);
     }//GEN-LAST:event_btnGuardarActionPerformed

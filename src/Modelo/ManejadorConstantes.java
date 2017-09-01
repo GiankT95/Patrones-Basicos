@@ -18,6 +18,7 @@ public class ManejadorConstantes {
     public static String FORMATO_LISTA_CLIENTES = "%d;%10s;%10s;N° de cuentas %d";
     public static String FORMATO_LISTA_CUENTAS = "%10s;%10d;%10s %10s";
     public static String FORMATO_TRANSACCION = "%10s|%10s|Monto %10d|%10s %10s|%10s|";
+    public static String MOSTRAR_PROCESO_INTERFAZ = "Procesada la transaccion (%s) del cliente %s %s por la cajera %d; Tiempo: %d seg.\n";
     public static int TOPE_SOBREGIRO_CORRIENTE = -500000;   
     
 }

@@ -18,7 +18,7 @@ public class Banco {
     
     private String nombre;
     private static ArrayList<Cliente> listaClientes;
-    private ArrayList<Cajera> listaCajeras;
+    private static ArrayList<Cajera> listaCajeras;
     
     public Banco(String nombre){
         this.nombre = nombre;
@@ -26,16 +26,42 @@ public class Banco {
         listaCajeras = new ArrayList();        
     }
     
-    public void agregarCliente(Cliente clienteNuevo){        
+    public synchronized void agregarCliente(Cliente clienteNuevo){        
         
-        listaClientes.add(clienteNuevo);
+        synchronized(listaClientes){
+            listaClientes.add(clienteNuevo);
+            listaClientes.notifyAll();
+        }
     }
     
     public void eliminarCliente(Cliente c){
         this.listaClientes.remove(c);
     }
     
-    public void agregarCajera(Cajera cajeraNueva){
+    
+    public synchronized void crearCajeras(){
+
+        long initialTime = System.currentTimeMillis();
+
+        if(getListaCajeras().isEmpty()){
+            int x = 1;
+
+            Cajera cajera = new Cajera(x, initialTime);
+            agregarCajera(cajera);
+            cajera.start();
+        }
+        
+        else{
+            int x = getListaCajeras().size()+1;
+
+            Cajera cajera = new Cajera(x, initialTime);
+            agregarCajera(cajera);
+            cajera.start();
+        }
+        
+    }
+    
+    public synchronized void agregarCajera(Cajera cajeraNueva){
         this.listaCajeras.add(cajeraNueva);        
     }
     
@@ -45,6 +71,7 @@ public class Banco {
     
     public synchronized static Cliente siguienteCliente() throws Exception {
         if(!listaClientes.isEmpty()){
+            
             Cliente aux = listaClientes.get(0);
             listaClientes.remove(0);
             
@@ -55,26 +82,6 @@ public class Banco {
         }
     }
     
-    public void iniciarCajeras(){
-        
-        for(Cajera c : this.listaCajeras){
-            c.start();
-        }
-    }
-    
-    /*public synchronized void detenerCajeras() throws InterruptedException{
-        
-        if(!listaCajeras.isEmpty()){
-            
-            for(Cajera c : this.listaCajeras){
-               c.wait();
-            }
-        }
-        
-        else{
-            throw new InterruptedException("No hay cajeras");
-        }
-    }*/
 
     public int numClientes(){
         return this.listaClientes.size();
@@ -92,7 +99,7 @@ public class Banco {
         this.nombre = nombre;
     }
 
-    public ArrayList<Cliente> getListaClientes() {
+    public static ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
 
@@ -100,7 +107,7 @@ public class Banco {
         this.listaClientes = listaClientes;
     }
 
-    public ArrayList<Cajera> getListaCajeras() {
+    public static ArrayList<Cajera> getListaCajeras() {
         return listaCajeras;
     }
 

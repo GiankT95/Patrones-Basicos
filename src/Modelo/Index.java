@@ -12,13 +12,15 @@ import java.util.Scanner;
 
 public class Index {
        
-    public static void main(String[] arg) throws IOException {
+    public synchronized static void main(String[] arg) throws IOException {
         
         ManejadorCliente manejadorCliente = new ManejadorCliente();
         ManejadorCuentas manejadorCtas = new ManejadorCuentas();
         ManejadorTransacciones manejadorTrans = new ManejadorTransacciones();
         
         Banco banco = new Banco("Davivienda");
+        
+        //banco.crearCajeras(5);
         
         Cliente c1 = new Cliente("Jorge", "Rudas", 1673728);
         Cliente c2 = new Cliente("Daniela", "Castillo", 1890458);
@@ -27,11 +29,37 @@ public class Index {
         Cliente c5 = new Cliente("Juan", "Martinez", 1892362);
         Cliente c6 = new Cliente("Nicolas", "Perez", 1723621);
         Cliente c7 = new Cliente("Alejandra", "Acosta", 1383272);
-                
-        long initialTime = System.currentTimeMillis();
         
-        Cajera cajera1 = new Cajera("Viviana", initialTime);
-        Cajera cajera2 = new Cajera("Camila", initialTime);
+        /*banco.crearCajeras();
+        banco.crearCajeras();
+        banco.crearCajeras();
+        
+        synchronized(banco.getListaClientes()){
+            banco.agregarCliente(c1);
+            banco.agregarCliente(c2);
+            banco.agregarCliente(c3);
+            banco.agregarCliente(c4);
+            banco.agregarCliente(c5);
+            banco.agregarCliente(c6);
+            banco.agregarCliente(c7);
+            banco.getListaClientes().notifyAll();   
+        }*/
+        
+        for(Transaccion t : c1.getListaTrans()){
+            System.out.println(t.toString());
+        }
+        
+        /*for(Cajera c: banco.getListaCajeras()){
+       
+            System.out.println("Cajera " + c.getIndex());
+        }
+        System.out.println("---------------");
+        */
+        
+        
+        
+        /*Cajera cajera1 = new Cajera(1, initialTime);
+        Cajera cajera2 = new Cajera(2, initialTime);
         
         banco.agregarCajera(cajera1);
         banco.agregarCajera(cajera2);

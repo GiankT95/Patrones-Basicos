@@ -8,6 +8,8 @@ package Contolador;
 import Modelo.Banco;
 import Modelo.Cajera;
 import Modelo.Cliente;
+import Modelo.ManejadorConstantes;
+import Vista.Interfaz;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +21,7 @@ import java.util.logging.Logger;
 public class Controlador {
     
     public Banco banco;
-    long initialTime = System.currentTimeMillis();
+    
     
     public Controlador(){
         
@@ -29,54 +31,37 @@ public class Controlador {
         
     }
     
-    public synchronized Cajera agregarCajera(String nombre){
-        Cajera c = new Cajera(nombre, initialTime);
-        banco.getListaCajeras().add(c);
-        c.start();
-        this.recibirCliente();
+    public synchronized void agregarCajeras(){
         
-        return c;
+        this.getBanco().crearCajeras();
+    }
+    
+    public static synchronized void moverFila(){
+        Interfaz.modelo1.remove(0);
     }
     
     public synchronized Cliente agregarCliente(String nombre, String apellido, int cedula){
         
         Cliente e = new Cliente(nombre, apellido, cedula);
         
-        synchronized(banco.getListaClientes()){
-        
-            banco.getListaClientes().add(e);
-            banco.getListaClientes().notify();
+        banco.agregarCliente(e);
 
-        }
-        
         return e;
     }
     
-    public synchronized void eliminarCliente(Cliente e){
+    public void eliminarCliente(Cliente e){
         
-        synchronized(banco.getListaClientes()){
-        
-            banco.getListaClientes().remove(e);
-            banco.getListaClientes().notify();
-
-        }
+        banco.getListaClientes().remove(e);        
     }
     
-    public synchronized Cliente recibirCliente(){
+    public void eliminarCajera(Cajera c){
         
-        if(banco.getListaClientes().isEmpty()){
-            try {
-                wait();
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        }
+        banco.getListaCajeras().remove(c);        
+    }
+    
+    public static synchronized void mostrarProceso(String t, String n, String a, int i, int tiempo){
         
-        Cliente cliente = banco.getListaClientes().get(0);
-        banco.getListaClientes().remove(0);
-        
-        return cliente;
-        
+        Interfaz.areaConsola.append(String.format(ManejadorConstantes.MOSTRAR_PROCESO_INTERFAZ, t,n,a,i, tiempo));
     }
 
     public Banco getBanco() {
